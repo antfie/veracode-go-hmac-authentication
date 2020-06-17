@@ -5,7 +5,7 @@ A Go version of the Veracode HMAC authentication examples as found here: https:/
 ## Installation
 
 ```
-go get github.com/antfie/veracode-go-hmac-authentication
+go get -u github.com/antfie/veracode-go-hmac-authentication
 ```
 
 ## Example Usage
