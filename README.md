@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/antfie/veracode-go-hmac-authentication)](https://goreportcard.com/badge/github.com/antfie/veracode-go-hmac-authentication) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Go Report Card](https://goreportcard.com/badge/github.com/antfie/veracode-go-hmac-authentication)](https://goreportcard.com/report/github.com/antfie/veracode-go-hmac-authentication) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/antfie/veracode-go-hmac-authentication/blob/master/LICENSE)
 
 # Veracode HMAC Authentication Example for Go
 
