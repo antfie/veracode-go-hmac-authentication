@@ -1,3 +1,5 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/antfie/veracode-go-hmac-authentication)](https://goreportcard.com/badge/github.com/antfie/veracode-go-hmac-authentication) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/gojp/goreportcard/blob/master/LICENSE)
+
 # Veracode HMAC Authentication Example for Go
 
 A Go version of the Veracode HMAC authentication examples as found here: https://help.veracode.com/reader/LMv_dtSHyb7iIxAQznC~9w/CUv4heF9z9tOBnZ1uiB8UA.
