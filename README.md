@@ -46,7 +46,12 @@ func makeApiRequest(apiKeyID, apiKeySecret, apiUrl, httpMethod string) string {
 		panic(err)
 	}
 
-	authorizationHeader := hmac.CalculateAuthorizationHeader(parsedUrl, httpMethod, apiKeyID, apiKeySecret)
+	authorizationHeader, err := hmac.CalculateAuthorizationHeader(parsedUrl, httpMethod, apiKeyID, apiKeySecret)
+
+	if err != nil {
+		panic(err)
+	}
+
 	req.Header.Add("Authorization", authorizationHeader)
 
 	resp, err := client.Do(req)

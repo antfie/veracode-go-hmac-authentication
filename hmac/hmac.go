@@ -24,34 +24,45 @@ const headerFormat = "%s id=%s,ts=%s,nonce=%X,sig=%X"
 const veracodeHMACSHA256 = "VERACODE-HMAC-SHA-256"
 
 // CalculateAuthorizationHeader produces the value to be used with the Authorization HTTP Request header when making Veracode API calls.
-func CalculateAuthorizationHeader(url *url.URL, httpMethod, apiKeyID, apiKeySecret string) string {
-	nonce := createNonce(16)
+func CalculateAuthorizationHeader(url *url.URL, httpMethod, apiKeyID, apiKeySecret string) (string, error) {
+	nonce, err := createNonce(16)
+
+	if err != nil {
+		return "", err
+	}
+
+	secret, err := fromHexString(apiKeySecret)
+
+	if err != nil {
+		return "", err
+	}
+
 	timestampMilliseconds := strconv.FormatInt(time.Now().UnixNano()/int64(1000000), 10)
 	data := fmt.Sprintf(dataFormat, apiKeyID, url.Hostname(), url.RequestURI(), httpMethod)
-	dataSignature := calculateSignature(fromHexString(apiKeySecret), nonce, []byte(timestampMilliseconds), []byte(data))
-	return fmt.Sprintf(headerFormat, veracodeHMACSHA256, apiKeyID, timestampMilliseconds, nonce, dataSignature)
+	dataSignature := calculateSignature(secret, nonce, []byte(timestampMilliseconds), []byte(data))
+	return fmt.Sprintf(headerFormat, veracodeHMACSHA256, apiKeyID, timestampMilliseconds, nonce, dataSignature), nil
 }
 
-func createNonce(size int) []byte {
+func createNonce(size int) ([]byte, error) {
 	nonce := make([]byte, size)
 
 	_, err := rand.Read(nonce)
 
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	return nonce
+	return nonce, nil
 }
 
-func fromHexString(input string) []byte {
-	result, err := hex.DecodeString(input)
+func fromHexString(input string) ([]byte, error) {
+	decoded, err := hex.DecodeString(input)
 
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	return result
+	return decoded, nil
 }
 
 func calculateSignature(key, nonce, timestamp, data []byte) []byte {
