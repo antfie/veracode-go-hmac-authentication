@@ -2,7 +2,7 @@
 
 # Veracode HMAC Authentication for Go
 
-A Go version of the Veracode HMAC authentication as found here: <https://github.com/antfie/veracode-go-hmac-authentication/edit/master/README.md>. This library has no dependencies.
+A Go version of the Veracode HMAC authentication as found in [Veracode Docs](https://docs.veracode.com/r/c_hmac_signing_example). This library has no dependencies.
 
 ## Installation
 
